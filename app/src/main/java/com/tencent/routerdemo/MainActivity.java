@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setData(Uri.parse("router://about"));
+                intent.setData(Uri.parse("router://about?age=10&num=100"));
                 MainActivity.this.startActivity(intent);
             }
         });

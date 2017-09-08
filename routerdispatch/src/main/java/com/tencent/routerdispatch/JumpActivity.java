@@ -10,10 +10,18 @@ public class JumpActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String uriString = getIntent().getDataString();
         Uri uri = getIntent().getData();
-        Intent intent = new Intent(this, Router.getActivity(uriString));
+        UriPath uriPath = UriPath.createUriPath(uri);
+        Intent intent = new Intent(this,Router.getActivity(uriPath.getHost() + "/" + uriPath.getPath()));
+        for (Params params : uriPath.getParamsList()) {
+            intent.putExtra(params.key, params.value);
+        }
         startActivity(intent);
         finish();
+    }
+
+
+    public static void doJumpAction() {
+
     }
 }

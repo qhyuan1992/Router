@@ -22,10 +22,11 @@ public class Router {
         }
     }
 
-    public static Class<? extends Activity> getActivity(String uriStr) {
+    public static Class<? extends Activity> getActivity(String uriPath) {
         initRouteMap();
-        String key = uriStr.substring(uriStr.indexOf("//") + 2);
-        return activityHashMap.get(key);
+        if (uriPath.endsWith("/"))
+            uriPath = uriPath.substring(0, uriPath.length() - 1);
+        return activityHashMap.get(uriPath);
     }
 
 }
